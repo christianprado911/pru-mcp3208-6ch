@@ -2,7 +2,7 @@
 # Default location of Code Generation Tools and PRU Software Support Package
 PRU_CGT ?=/usr/share/ti/cgt-pru
 #PRU_SSP :=/home/debian/pru-ssp/pru-software-support-package-5.6.0
-PRU_SSP ?=/usr/share/ti/pru-software-support-package-5.7.0
+PRU_SSP ?=/usr/share/ti/pru-software-support-package
 
 # Target remoteproc sysfs dir
 RPROC = /sys/class/remoteproc/remoteproc1
@@ -49,12 +49,12 @@ deploy: install
 
 # Invokes the linker (-z flag) to make the .out file
 $(TARGET): $(OBJECTS) $(LINKER_COMMAND_FILE)
-	$/usr/bin/clpru $(CFLAGS) -z -i$(PRU_CGT)/lib -i$(PRU_CGT)/include $(LFLAGS) -o $(TARGET) $(OBJECTS) -m$(MAP) $(LINKER_COMMAND_FILE) --library=libc.a $(LIBS)
+	$(PRU_CGT)/bin/clpru $(CFLAGS) -z -i$(PRU_CGT)/lib -i$(PRU_CGT)/include $(LFLAGS) -o $(TARGET) $(OBJECTS) -m$(MAP) $(LINKER_COMMAND_FILE) --library=libc.a $(LIBS)
 
 # Invokes the compiler on all c files in the directory to create the object files
 $(GEN_DIR)/%.object: %.c
 	mkdir -p $(GEN_DIR)
-	$/usr/bin/clpru --include_path=$(PRU_CGT)/include $(INCLUDE) $(CFLAGS) -fe $@ $<
+	$(PRU_CGT)/bin/clpru --include_path=$(PRU_CGT)/include $(INCLUDE) $(CFLAGS) -fe $@ $<
 
 .PHONY: all clean run install
 
