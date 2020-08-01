@@ -8,7 +8,7 @@ To build, extract PRU software support package pru-software-support-package-5.7.
 Aditionally, the PRU code generation tools must be installed (downloaded from [here](http://software-dl.ti.com/codegen/esd/cgt_public_sw/PRU/2.3.3/ti_cgt_pru_2.3.3_armlinuxa8hf_busybox_installer.sh)) and installed in
 `/usr/share/ti/cgt-pru`. To proceed instalation, make  `chmod a+x ti_cgt_pru_2.3.3_armlinuxa8hf_busybox_installer.sh`. After unpacking make `./ti_cgt_pru_2.3.3_armlinuxa8hf_busybox_installer.sh` . If it is installed in a different path, the `PRU_CGT` environment variable must be exported and point to it.
 
-For cross-compilation, export `CC` to the appropriate cross-compiler, like `export CC=armv7a-hardfloat-linux-gnueabihf-gcc`.
+For cross-compilation, export `CC` to the appropriate cross-compiler, like `export CC=arm-linux-gnueabihf-gcc`.
 
 To compile, simply run `make`. To load the firmware into the PRUs, run 
 `make deploy` in the BeagleBone Green Wireless. It also configures the relevant pins.
