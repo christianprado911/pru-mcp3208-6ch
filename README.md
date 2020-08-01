@@ -2,8 +2,8 @@
 
 To build, extract PRU software support package pru-software-support-package-5.7.0.tar.gz (from
 [here](https://git.ti.com/cgit/pru-software-support-package/pru-software-support-package/)) to 
-`/usr/share/ti/pru-software-support-package`. It can be 
-extracted to another path as long as the `PRU_SSP` environment variable points to it and is exported.
+`/usr/share/ti/pru-software-support-package`. Make it `ln -s /usr/bin/ /usr/share/ti/cgt-pru/bin` and `export PRU_CGT=/usr/share/ti/cgt-pru
+`. It can be extracted to another path as long as the `PRU_SSP` environment variable points to it and is exported.
 
 Aditionally, the PRU code generation tools must be installed (downloaded from [here](http://software-dl.ti.com/codegen/esd/cgt_public_sw/PRU/2.3.3/ti_cgt_pru_2.3.3_armlinuxa8hf_busybox_installer.sh)) and installed in
 `/usr/share/ti/cgt-pru`. To proceed instalation, make  `chmod a+x ti_cgt_pru_2.3.3_armlinuxa8hf_busybox_installer.sh` (or the actual cgt version). After unpacking make `./ti_cgt_pru_2.3.3_armlinuxa8hf_busybox_installer.sh` . If it is installed in a different path, the `PRU_CGT` environment variable must be exported and point to it.
