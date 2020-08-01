@@ -1,8 +1,8 @@
 # pru-mcp3208-6ch
 
 To build, extract PRU software support package pru-software-support-package-5.7.0.tar.gz (from
-[here](https://git.ti.com/cgit/pru-software-support-package/pru-software-support-package/snapshot/pru-software-support-package-5.7.0.tar.gz)) to 
-`/usr/share/ti/pru-software-support-package` (you may have to rename the folder). It can be 
+[here](https://git.ti.com/cgit/pru-software-support-package/pru-software-support-package/)) to 
+`/usr/share/ti/pru-software-support-package`. It can be 
 extracted to another path as long as the `PRU_SSP` environment variable points to it and is exported.
 
 Aditionally, the PRU code generation tools must be installed (downloaded from [here](http://software-dl.ti.com/codegen/esd/cgt_public_sw/PRU/2.3.3/ti_cgt_pru_2.3.3_armlinuxa8hf_busybox_installer.sh)) and installed in
