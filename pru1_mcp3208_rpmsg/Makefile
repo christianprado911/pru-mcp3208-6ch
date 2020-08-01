@@ -45,12 +45,12 @@ deploy: install
 
 # Invokes the linker (-z flag) to make the .out file
 $(TARGET): $(OBJECTS) $(LINKER_COMMAND_FILE)
-	$(PRU_CGT)/bin/clpru $(CFLAGS) -z -i$(PRU_CGT)/lib -i$(PRU_CGT)/include $(LFLAGS) -o $(TARGET) $(OBJECTS) -m$(MAP) $(LINKER_COMMAND_FILE) --library=libc.a $(LIBS)
+	$/usr/bin/clpru $(CFLAGS) -z -i$(PRU_CGT)/lib -i$(PRU_CGT)/include $(LFLAGS) -o $(TARGET) $(OBJECTS) -m$(MAP) $(LINKER_COMMAND_FILE) --library=libc.a $(LIBS)
 
 # Invokes the compiler on all c files in the directory to create the object files
 $(GEN_DIR)/%.object: %.c
 	mkdir -p $(GEN_DIR)
-	$(PRU_CGT)/bin/clpru --include_path=$(PRU_CGT)/include $(INCLUDE) $(CFLAGS) -fe $@ $<
+	$/usr/bin/clpru --include_path=$(PRU_CGT)/include $(INCLUDE) $(CFLAGS) -fe $@ $<
 
 .PHONY: all clean run install
 
