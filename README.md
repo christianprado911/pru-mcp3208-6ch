@@ -17,7 +17,7 @@ The ARM Host program, `host_rpmsg_mcp3208` reads the data and prints all reading
 Pinout
 ------
 
-* P8_42: SPI MISO
-* P8_43: SPI Clock
-* P8_45: SPI MOSI
-* P8_46: Chip Select
+* P8_42: SPI MISO     12
+* P8_43: SPI Clock    13
+* P8_45: SPI MOSI     11
+* P8_46: Chip Select  10
