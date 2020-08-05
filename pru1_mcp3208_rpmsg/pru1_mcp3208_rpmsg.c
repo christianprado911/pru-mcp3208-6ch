@@ -30,7 +30,7 @@ volatile register uint32_t __R31;
 #define CS_MASK   (1 << 1)
 
 // MCP3208 timing delays, in PRU cycles (200MHz ==> 5ns / cycle)
-#define MCP3208_TSUCS_CYC    40  //CS~ Fall to First Rising CLK edge (min 100ns)
+#define MCP3208_TSUCS_CYC    40  //CS~ Fall to First Rising CLK edge (min 100ns) Obs: Change to 100 cycles
 #define MCP3208_THI_CYC      100 //Clock High Time (min 250ns)
 #define MCP3208_TLO_CYC      100 //Clock Low Time (min 250ns)
 #define MCP3208_TCSH_CYC     200 //CS~ Disable Time (min 500ns)
