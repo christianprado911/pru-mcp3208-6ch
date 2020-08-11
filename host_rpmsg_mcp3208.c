@@ -49,7 +49,7 @@ int main(void) {
       Buffer *b = (Buffer *) readBuf;
       for (int i=0; i<DATA_BUFFER_LEN; i++){
         fprintf(fp, "ch%d=%4" PRIu16 ", ", i % NUM_SCAN_ELEMENTS , b->data[i]);
-      if(i % NUM_SCANS == NUM_SCANS - 1 && i % NUM_SCAN_ELEMENTS == NUM_SCAN_ELEMENTS - 1){
+      if(i % NUM_SCANS == NUM_SCANS - 1 && i % DATA_BUFFER_LEN == DATA_BUFFER_LEN - 1){
         fprintf(fp, "ts=%" PRIu64 ",  ", b->timestamp_ns);
         fprintf(fp, "delta=%" PRIu64, b->timestamp_ns - last_ts);
         fprintf(fp, "\n");}
