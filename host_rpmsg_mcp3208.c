@@ -48,15 +48,15 @@ int main(void) {
     if (result == sizeof(Buffer)) {
       Buffer *b = (Buffer *) readBuf;
       for (int i=0; i<DATA_BUFFER_LEN; i++){
-      ch[i % NUM_SCAN_ELEMENTS][i % NUM_SCANS] = b->data[i];
-        fprintf(fp, "ch%d=%4" PRIu16 ", ", i % NUM_SCAN_ELEMENTS , ch[i % NUM_SCAN_ELEMENTS][i % NUM_SCANS]);
-      if(i % NUM_SCANS == NUM_SCANS - 1){
-        fprintf(fp, "ts=%" PRIu64 ",\t", b->timestamp_ns);
+        fprintf(fp, "ch%d=%4" PRIu16 ", ", i % NUM_SCAN_ELEMENTS , b->data[i]);
+      if(i % NUM_SCANS == NUM_SCANS - 1 && i % NUM_SCAN_ELEMENTS == NUM_SCAN_ELEMENTS - 1){
+        fprintf(fp, "ts=%" PRIu64 ",  ", b->timestamp_ns);
         fprintf(fp, "delta=%" PRIu64, b->timestamp_ns - last_ts);
         fprintf(fp, "\n");}
-       else
-        fprintf(fp, "\n");
+      else if(i % NUM_SCAN_ELEMENTS == NUM_SCAN_ELEMENTS - 1)
+       fprintf(fp, "\n");
       }
+
       last_ts = b->timestamp_ns;
     } else if (result < 0) {
       perror("Error reading from device");
