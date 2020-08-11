@@ -53,7 +53,7 @@ int main(void) {
        fprintf(fp, "\n");
       }
         fprintf(fp, "ts=%" PRIu64 ",  ", b->timestamp_ns);
-        fprintf(fp, "delta=% \n" PRIu64, b->timestamp_ns - last_ts);
+        fprintf(fp, "delta=%" PRIu64 "\n", b->timestamp_ns - last_ts);
      last_ts = b->timestamp_ns;
     } else if (result < 0) {
       perror("Error reading from device");
