@@ -36,7 +36,7 @@ int main(void) {
   fp = fopen("/home/debian/pru-mcp3208-6ch/teste.txt", "a");
 
   uint64_t last_ts = 0;
-  for(int j=0; j<3;j++) { //Mudar esse valor para (;;) afim de obter uma medida `infinita`
+  for(int j=0; j<5;j++) { //Mudar esse valor para (;;) afim de obter uma medida `infinita`
     /* Kick the PRU through the RPMsg channel */
     int result = write(fd, 0, 0);
     if (result < 0) {
