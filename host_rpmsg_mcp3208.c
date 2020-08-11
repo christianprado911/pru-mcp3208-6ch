@@ -22,7 +22,7 @@ typedef struct {
   uint16_t data[DATA_BUFFER_LEN];
 } Buffer;
 
-  uint16_t ch[NUM_SCAN_ELEMENTS][NUM_SCANS];
+ // uint16_t ch[NUM_SCAN_ELEMENTS][NUM_SCANS];
 
 int main(void) {
   /* Open the rpmsg_pru character device file */
