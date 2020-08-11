@@ -12,8 +12,8 @@
 uint8_t readBuf[512];
 #define DEVICE_NAME  "/dev/rpmsg_pru1"
 
-#define NUM_SCAN_ELEMENTS  4
-#define NUM_SCANS          60
+#define NUM_SCAN_ELEMENTS  6
+#define NUM_SCANS          40
 #define DATA_BUFFER_LEN    (NUM_SCAN_ELEMENTS * NUM_SCANS)
 #define BUFFER_WORD_LEN    2 + DATA_BUFFER_LEN/2
 
@@ -36,7 +36,7 @@ int main(void) {
   fp = fopen("/home/debian/teste.txt", "a");
 
   uint64_t last_ts = 0;
-  for(int j=0; j<3;j++) {
+  for(int j=0; j<3;j++) { //Mudar esse valor para (;;) afim de obter uma medida `infinita`
     /* Kick the PRU through the RPMsg channel */
     int result = write(fd, 0, 0);
     if (result < 0) {
@@ -50,11 +50,12 @@ int main(void) {
       for (int i=0; i<DATA_BUFFER_LEN; i++){
       ch[i % NUM_SCAN_ELEMENTS][i % NUM_SCANS] = b->data[i];
         fprintf(fp, "ch%d=%4" PRIu16 ", ", i % NUM_SCAN_ELEMENTS , ch[i % NUM_SCAN_ELEMENTS][i % NUM_SCANS]);
-      if(i % NUM_SCAN_ELEMENTS == NUM_SCAN_ELEMENTS - 1){
-      fprintf(fp, "ts=%" PRIu64 ",\t", b->timestamp_ns);
-      fprintf(fp, "delta=%" PRIu64, b->timestamp_ns - last_ts);
-      fprintf(fp, "\n");}
-
+      if(i % NUM_SCANS == NUM_SCANS - 1){
+        fprintf(fp, "ts=%" PRIu64 ",\t", b->timestamp_ns);
+        fprintf(fp, "delta=%" PRIu64, b->timestamp_ns - last_ts);
+        fprintf(fp, "\n");}
+       else
+        fprintf(fp, "\n");
       }
       last_ts = b->timestamp_ns;
     } else if (result < 0) {
