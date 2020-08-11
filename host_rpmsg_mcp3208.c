@@ -33,7 +33,7 @@ int main(void) {
   }
 
   FILE *fp;
-  fp = fopen("/home/debian/teste.txt", "a");
+  fp = fopen("/home/debian/pru-mcp3208-6ch/teste.txt", "a");
 
   uint64_t last_ts = 0;
   for(int j=0; j<3;j++) { //Mudar esse valor para (;;) afim de obter uma medida `infinita`
