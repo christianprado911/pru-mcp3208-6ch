@@ -1,5 +1,5 @@
 TOPTARGETS := all clean install deploy
-SUBDIRS := pru0_mcp3208_comm/ pru1_mcp3208_rpmsg/ 
+SUBDIRS := pru0_mcp3208_rpmsg/ pru1_mcp3208_comm/ 
 
 all: host_rpmsg_mcp3208
 $(TOPTARGETS): $(SUBDIRS)
