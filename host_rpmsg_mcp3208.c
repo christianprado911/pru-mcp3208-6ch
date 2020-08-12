@@ -36,7 +36,7 @@ int main(void) {
   fp = fopen("/home/debian/pru-mcp3208-6ch/teste.txt", "a");
 
   uint64_t last_ts = 0;
-  for(int j=0; j<5;j++) { //Mudar esse valor para (;;) afim de obter uma medida `infinita`
+  for(int j=0; j<100;j++) { //Mudar esse valor para (;;) afim de obter uma medida `infinita`
     /* Kick the PRU through the RPMsg channel */
     int result = write(fd, 0, 0);
     if (result < 0) {
@@ -49,12 +49,14 @@ int main(void) {
       Buffer *b = (Buffer *) readBuf;
       for (int i=0; i<DATA_BUFFER_LEN; i++){
         fprintf(fp, "ch%d=%4" PRIu16 ", ", i % NUM_SCAN_ELEMENTS , b->data[i]);
-      if(i % NUM_SCAN_ELEMENTS == NUM_SCAN_ELEMENTS - 1)
+      if(i % NUM_SCANS == NUM_SCANS - 1 && i % NUM_SCAN_ELEMENTS == NUM_SCAN_ELEMENTS - 1){
+        fprintf(fp, "ts=%" PRIu64 ",  ", b->timestamp_ns);
+        fprintf(fp, "delta=%" PRIu64, b->timestamp_ns - last_ts);
+        fprintf(fp, "\n");}
+      else if(i % NUM_SCAN_ELEMENTS == NUM_SCAN_ELEMENTS - 1)
        fprintf(fp, "\n");
       }
-        fprintf(fp, "ts=%" PRIu64 ",  ", b->timestamp_ns);
-        fprintf(fp, "delta=%" PRIu64 "\n", b->timestamp_ns - last_ts);
-     last_ts = b->timestamp_ns;
+      last_ts = b->timestamp_ns;
     } else if (result < 0) {
       perror("Error reading from device");
       return -1;
@@ -63,7 +65,7 @@ int main(void) {
       printf("[[read only %d bytes, buffer size %u]]\n", result, bufsz);
     }
   }
-  
+
   fsync(0);
   close(fd);
   return 0;
