@@ -4,7 +4,7 @@ PRU_CGT ?=/usr/share/ti/cgt-pru
 PRU_SSP ?=/usr/share/ti/pru-software-support-package
 
 # Target remoteproc sysfs dir
-RPROC = /sys/class/remoteproc/remoteproc1
+RPROC = /sys/class/remoteproc/remoteproc0
 
 MKFILE_PATH := $(abspath $(lastword $(MAKEFILE_LIST)))
 CURRENT_DIR := $(notdir $(patsubst %/,%,$(dir $(MKFILE_PATH))))
