@@ -11,6 +11,7 @@
 #include <pru_rpmsg.h>
 
 #include "resource_table_0.h"
+#include "resource_table_empty.h"
 #include "../pru_common/shared_buffer.h"
 
 volatile register uint32_t __R30;
